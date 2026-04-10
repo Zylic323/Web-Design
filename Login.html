@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" initial="1.0">
+        <title>User Dashboard</title>
+        <link ref="stylesheet" href="style.css">
+    </head>
+    <style>
+  head {
+    background-color: indigo;
+    color: tomato;
+    padding: 0px 1rex 1rem;
+    padding-top: 4rex;
+    border-color: antiquewhite;
+    border-style: solid;
+  }
+</style>
+<body style="background-image: url(images/mount4.jpg);">
+  </style>
+  <style>
+    header {
+      background-color: green;
+      color: black;
+      padding: 0px 1rem;
+      text-align: center;
+      width: 94.5%;
+      background-repeat: repeat;
+      font-family:'Times New Roman', Times, serif;
+      border-color: yellow;
+      border-style: solid;
+      padding-top: 2rem;
+      border-radius: 2rem;
+      background-image: url(images/mount\ 3.jpg);
+
+    }
+  </style>
+<?php
+session_start();
+
+// Example credentials (normally from database)
+$correctUsername = "admin";
+$correctPasswordHash = password_hash("1234", PASSWORD_DEFAULT);
+
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+if ($username === $correctUsername && password_verify($password, $correctPasswordHash)) {
+
+  // Create session
+  $_SESSION['user'] = $username;
+
+  // Redirect to dashboard
+  header("Location: dashboard.php");
+  exit();
+
+} else {
+  echo "Invalid login details";
+}
+?>
+<header>
+    <h1>User Dashboard</h1>
+    <p>Welcome</p>
+
+</header>
+</html>
